@@ -1,0 +1,3 @@
+include ':FetchApps'
+include ':app'
+rootProject.name = "AppsList"
