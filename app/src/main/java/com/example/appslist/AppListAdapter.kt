@@ -8,6 +8,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.fetchapps.AppSummaryList
+import java.util.*
 
 class AppListAdapter(private var appList: List<AppSummaryList>) :
     RecyclerView.Adapter<AppListAdapter.MyViewHolder>() {
@@ -31,7 +32,7 @@ class AppListAdapter(private var appList: List<AppSummaryList>) :
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        val apps = appList[position]
+        val apps = appList!![position]
         holder.name.text = apps.name
         holder.packageName.text = apps.packages
         holder.versionCode.text = apps.versionCode
@@ -47,6 +48,15 @@ class AppListAdapter(private var appList: List<AppSummaryList>) :
     }
 
     override fun getItemCount(): Int {
-        return appList.size
+        return appList!!.size
+    }
+
+    fun filterList(filteredlist: ArrayList<AppSummaryList>) {
+        // below line is to add our filtered
+        // list in our course array list.
+        appList = filteredlist;
+        // below line is to notify our adapter
+        // as change in recycler view data.
+        notifyDataSetChanged();
     }
 }
