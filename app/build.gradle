@@ -41,9 +41,9 @@ dependencies {
     implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
 
     implementation 'com.github.bumptech.glide:glide:4.12.0'
+    implementation project(path: ':FetchApps')
     annotationProcessor 'com.github.bumptech.glide:compiler:4.12.0'
 
-    implementation 'com.github.himanshisingh12:AppsListLibrary:0.1.0'
 
 
 

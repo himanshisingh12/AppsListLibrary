@@ -1,17 +1,22 @@
 package com.example.appslist
 
+import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.fetchapps.AppSummaryList
 import java.util.*
 
+
 class AppListAdapter(private var appList: List<AppSummaryList>) :
     RecyclerView.Adapter<AppListAdapter.MyViewHolder>() {
+
 
     class MyViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         var name: TextView = view.findViewById(R.id.list_app_name)
@@ -20,6 +25,7 @@ class AppListAdapter(private var appList: List<AppSummaryList>) :
         var versionName: TextView = view.findViewById(R.id.app_version_name)
         var mainActivity: TextView = view.findViewById(R.id.app_main_activity)
         var appIcon: ImageView = view.findViewById(R.id.app_icon)
+        var itemLayout: LinearLayout = view.findViewById(R.id.item_layout)
 
 
 
@@ -43,7 +49,16 @@ class AppListAdapter(private var appList: List<AppSummaryList>) :
             .with(holder.itemView.context)
             .load(apps.icon)
             .centerCrop()
-            .into(holder.appIcon);
+            .into(holder.appIcon)
+
+
+        holder.itemLayout.setOnClickListener(View.OnClickListener {
+            if (apps.intent != null) {
+                // We found the activity now start the activity
+                apps.intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                holder.itemView.context.startActivity(apps.intent);
+            }
+        })
 
     }
 
