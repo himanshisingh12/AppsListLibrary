@@ -3,6 +3,7 @@ package com.example.fetchapps
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.widget.Toast
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -46,6 +47,11 @@ class AppLists {
                                 versionCode.toString(), versionName, launchIntent
                             )
                         )
+
+                        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
+                            context.packageManager.getInstalledApplications(PackageManager.MATCH_UNINSTALLED_PACKAGES)
+
+                        }
                     }
                 } catch (ex: Exception) {
                     ex.printStackTrace();
@@ -58,7 +64,6 @@ class AppLists {
 
             return apps
         }
-
 
 
 
